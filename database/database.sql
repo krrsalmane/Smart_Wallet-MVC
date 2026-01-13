@@ -60,7 +60,10 @@ CREATE TABLE expenses (
         REFERENCES categories(id)
         ON DELETE RESTRICT
 );
-
+SELECT* from users;
+SELECT * from incomes;
+select * from expenses;
+SELECT* from categories;
 
 
 
