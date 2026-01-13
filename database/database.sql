@@ -1,9 +1,10 @@
+-- Active: 1768316508774@@127.0.0.1@5432@smartwallet
 
 CREATE DATABASE IF NOT EXISTS money_tracker;
 USE money_tracker;
 
 CREATE TABLE users (
-    id INT AUTO_INCREMENT PRIMARY KEY,
+    id SERIAL PRIMARY KEY,
     full_name VARCHAR(100) NOT NULL,
     email VARCHAR(100) NOT NULL UNIQUE,
     password VARCHAR(255) NOT NULL,
@@ -12,14 +13,15 @@ CREATE TABLE users (
 
 
 CREATE TABLE categories (
-    id INT AUTO_INCREMENT PRIMARY KEY,
+    id SERIAL PRIMARY KEY,
     name VARCHAR(100) NOT NULL,
-    type ENUM('income', 'expense') NOT NULL
+    type VARCHAR(10) NOT NULL CHECK (type IN ('income', 'expense'))
 );
 
 
+
 CREATE TABLE incomes (
-    id INT AUTO_INCREMENT PRIMARY KEY,
+    id SERIAL PRIMARY KEY,
     amount DECIMAL(10,2) NOT NULL,
     description VARCHAR(255),
     income_date DATE NOT NULL,
@@ -40,7 +42,7 @@ CREATE TABLE incomes (
 
 
 CREATE TABLE expenses (
-    id INT AUTO_INCREMENT PRIMARY KEY,
+    id SERIAL PRIMARY KEY,
     amount DECIMAL(10,2) NOT NULL,
     description VARCHAR(255),
     expense_date DATE NOT NULL,
@@ -58,6 +60,7 @@ CREATE TABLE expenses (
         REFERENCES categories(id)
         ON DELETE RESTRICT
 );
+
 
 
 
