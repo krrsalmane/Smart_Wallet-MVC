@@ -1,7 +1,7 @@
 <?php 
 
 
-class Income {}
+class Income extends operation {}
 
 
 ?>
